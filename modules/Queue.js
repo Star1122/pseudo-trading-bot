@@ -1,6 +1,12 @@
 module.exports = class Queue {
   constructor(config) {
     this.tradingPair = config.tradingPair;
+    this.logger = config.logger;
+    this.meta = {
+      queue: {},
+      buyCount: 0,
+      sellCount: 0
+    };
   }
 
   init() {
@@ -19,12 +25,8 @@ module.exports = class Queue {
 
   getters() {
     return {
-      get length() {
-        return Object.keys(this.queue).length;
-      },
-      get orders() {
-        return this.queue;
-      }
+      get length() { return Object.keys(this.queue).length; },
+      get orders() { return this.queue; }
     };
   }
 };

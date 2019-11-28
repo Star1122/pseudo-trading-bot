@@ -4,6 +4,12 @@ module.exports = class Ticker {
   constructor(config) {
     this.tradingPair = config.tradingPair;
     this.callbacks = config.callbacks;
+    this.meta = {};
+    this.isDev = process.env.NODE_ENV === 'dev';
+    this.godMode = {
+      bid: !this.isDev ? false : '0.01100000',
+      ask: !this.isDev ? false : '0.01000000'
+    };
   }
 
   init() {
@@ -30,12 +36,8 @@ module.exports = class Ticker {
 
   getters() {
     return {
-      get bid() {
-        return Number(this.bidPrice);
-      },
-      get ask() {
-        return Number(this.askPrice);
-      }
+      get bid() { return Number(this.bidPrice); },
+      get ask() { return Number(this.askPrice); }
     };
   }
 };

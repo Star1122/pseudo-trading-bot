@@ -21,7 +21,9 @@ app.listen(app.get('port'), () => {
     tradingPair: process.env.TARGET_ASSET + process.env.BASE_ASSET,
     profitPercentage: Number(process.env.PROFIT_PERCENTAGE) / 100,
     budget: Number(process.env.BUDGET),
-    compound: process.env.COMPOUND === 'true',
+    compound: process.env.COMPOUND.toLowerCase() === "true",
+    profitLockPercentage: Number(process.env.PROFIT_LOCK_PERCENTAGE) / 100,
+    stopLimitPercentage: Number(process.env.STOP_LIMIT_PERCENTAGE) / 100
   };
 
   const bot = new Bot(config);
